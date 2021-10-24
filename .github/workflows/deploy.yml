@@ -3,7 +3,7 @@ name: freelec-springboot2-webservice
 on:
   push:
     branches:
-      - version/2020-12-11 # (1) 실습하시는분들은 master로 하시면 됩니다. (저는 별도 브랜치로 지정)
+      [sujin]
   workflow_dispatch: # (2) 수동 실행
 
 jobs:
