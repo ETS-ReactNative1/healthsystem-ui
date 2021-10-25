@@ -80,7 +80,7 @@ jobs:
 
           environment_name: cp-client-dev
 
-          version_label: ${{github.run_number}}
+
 
           use_existing_version_if_available: true
 
