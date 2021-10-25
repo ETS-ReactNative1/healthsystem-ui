@@ -1,78 +1,29 @@
-name: Deploy
 
-
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-
-# events but only for the master branch
+name: Node.js CI
 
 on:
-
   push:
-
-    branches: [sujin]
-
+    branches: [ sujin ]
   pull_request:
-
-    branches: [sujin]
-
-
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches: [ sujin ]
 
 jobs:
-
-  # This workflow contains a single job called "build"
-
   build:
-
-    # The type of runner that the job will run on
 
     runs-on: ubuntu-latest
 
-
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-
       - uses: actions/checkout@v2
-
-
-
-      - name: Install Packages
-
-        run: npm install
-
-
-
-      - name: Gnerate Bundle File
-
-        run: npm run build
-
-
-
-      - name: check dir
-
-        run: cd build && ls -al
-
-
-
-      - name: Generate deployment package
-
-        run: cd build && zip -r deploy.zip .
-
-
-
-      - name: Deploy to EB
-          uses: einaregilsson/beanstalk-deploy@v10
-          with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: MyApplicationName
-          environment_name: MyApplication-Environment
-          version_label: 12345
-          region: us-east-2
-          deployment_package: deploy.zip
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
