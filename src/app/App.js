@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import {
-  Route,
-  withRouter,
-  Switch
-} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 
-import { getCurrentUser } from '../util/APIUtils';
-import { ACCESS_TOKEN } from '../constants';
-
-import PollList from '../poll/PollList';
+import {getCurrentUser} from '../util/APIUtils';
+import {ACCESS_TOKEN} from '../constants';
 import NewPoll from '../poll/NewPoll';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
-import AppHeader from '../common/AppHeader';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
 import PrivateRoute from '../common/PrivateRoute';
 
-import { Layout, notification } from 'antd';
+import {Layout, notification} from 'antd';
+import MainPage from "../page/MainPage";
+import Header from "../common/Header";
+import Test from "../common/Test";
+import Footer from "../common/Footer";
+import CoursePage from "../page/CoursePage";
+
 const { Content } = Layout;
 
 class App extends Component {
@@ -38,7 +37,7 @@ class App extends Component {
       placement: 'topRight',
       top: 70,
       duration: 3,
-    });    
+    });
   }
 
   loadCurrentUser() {
@@ -52,10 +51,10 @@ class App extends Component {
         isAuthenticated: true,
         isLoading: false
       });
-    }).catch(error => {
+    }).catch(() => {
       this.setState({
         isLoading: false
-      });  
+      });
     });
   }
 
@@ -72,7 +71,7 @@ class App extends Component {
     });
 
     this.props.history.push(redirectTo);
-    
+
     notification[notificationType]({
       message: 'Polling App',
       description: description,
@@ -93,30 +92,34 @@ class App extends Component {
       return <LoadingIndicator />
     }
     return (
-        <Layout className="app-container">
-          <AppHeader isAuthenticated={this.state.isAuthenticated} 
-            currentUser={this.state.currentUser} 
-            onLogout={this.handleLogout} />
+        <div>
+          {/*<AppHeader isAuthenticated={this.state.isAuthenticated}*/}
+          {/*  currentUser={this.state.currentUser}*/}
+          {/*  onLogout={this.handleLogout} />*/}
+          <Test />
+          <Header isAuthenticated={this.state.isAuthenticated}
+                  currentUser={this.state.currentUser}
+                  onLogout={this.handleLogout} />
 
           <Content className="app-content">
             <div className="container">
-              <Switch>      
-                <Route exact path="/" 
-                  render={(props) => <PollList isAuthenticated={this.state.isAuthenticated} 
-                      currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
-                </Route>
-                <Route path="/login" 
-                  render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>
-                <Route path="/signup" component={Signup}></Route>
-                <Route path="/users/:username" 
+              <Switch>
+                <Route exact path="/" component={MainPage}/>
+                <Route path="/login"
+    render={(props) => <Login onLogin={this.handleLogin} {...props} />}/>
+                <Route path="/signup" component={Signup}/>
+                <Route path="/course" component={CoursePage}/>
+                <Route path="/users/:username"
                   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
                 </Route>
-                <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute>
-                <Route component={NotFound}></Route>
+                <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}/>
+                <Route component={NotFound}/>
               </Switch>
             </div>
           </Content>
-        </Layout>
+
+          <Footer />
+        </div>
     );
   }
 }

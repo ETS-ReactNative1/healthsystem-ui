@@ -31,7 +31,7 @@ class PollList extends Component {
             if(this.props.type === 'USER_CREATED_POLLS') {
                 promise = getUserCreatedPolls(this.props.username, page, size);
             } else if (this.props.type === 'USER_VOTED_POLLS') {
-                promise = getUserVotedPolls(this.props.username, page, size);                               
+                promise = getUserVotedPolls(this.props.username, page, size);
             }
         } else {
             promise = getAllPolls(page, size);
@@ -60,7 +60,7 @@ class PollList extends Component {
                 currentVotes: currentVotes.concat(Array(response.content.length).fill(null)),
                 isLoading: false
             })
-        }).catch(error => {
+        }).catch(() => {
             this.setState({
                 isLoading: false
             })
