@@ -1,16 +1,16 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import SmallButton from "./SmallButton";
+import TopButton from "./TopButton";
 
-const Test = () => {
+const TopLine = () => {
 
     return (
         <div style={styles.test}>
             <Link to={'/signin'}>
-                <SmallButton name="Sign in" />
+                <TopButton name="Sign in" />
             </Link>
             <Link to={'/login'}>
-                <SmallButton name="Log in" />
+                <TopButton name="Log in" />
             </Link>
         </div>
     );
@@ -18,9 +18,9 @@ const Test = () => {
 
 const styles = {
     test: {
-        height: 40,
-        backgroundColor: "#2c3e50",
+        height: "2vw",
+        backgroundColor: "#4b6584",
     },
 }
 
-export default Test;
+export default TopLine;

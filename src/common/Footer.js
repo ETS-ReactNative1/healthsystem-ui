@@ -10,10 +10,10 @@ const Footer = () => {
 
 const styles = {
     footer: {
-        backgroundColor: "#2c3e50",
-        height: 200,
+        backgroundColor: "#4b6584",
+        height: "15vw",
         width: "100%",
-        marginTop: 200
+        marginTop: "20vw"
     }
 }
 

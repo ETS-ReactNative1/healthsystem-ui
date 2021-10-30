@@ -1,24 +1,25 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {Col, Row} from "antd";
-import BigButton from "./BigButton";
+import NavButton from "./NavButton";
 
 const Header = () => {
     // const {isAuthenticated, currentUser, onLogout} = props;
-    const [opacity, setOpacity] = useState(.4);
+
+    const [logoOpacity, setLogoOpacity] = useState(.6);
 
     const styles = {
         panel: {
+            width: "100%",
+            height: "7vw",
             top: 0,
-            opacity: .4,
             backgroundColor: "#ecf0f1",
-            position: "sticky",
             zIndex: 10,
+            textAlign: "center",
         },
         logo: {
-            opacity: opacity,
             width: "15vw",
-            transition: "all .5s cubic-bezier(0.800, 0.000, 0.250, 1.000)"
+            opacity: logoOpacity,
         }
     };
 
@@ -26,27 +27,27 @@ const Header = () => {
         <div style={styles.panel}>
             <Row gutter={16}>
                 <Col span={6}>
-                    <Link to="/" onMouseOver={() => setOpacity(1)}
-                                 onMouseLeave={() => setOpacity(.4)}>
-                        <img src="img/logo.png" style={styles.logo} alt="logo"/>
+                    <Link to="/">
+                        <img src="img/logo.png" style={styles.logo} alt="logo"
+                            onMouseOver={() => setLogoOpacity(1)} onMouseLeave={() => setLogoOpacity(.6)}/>
                     </Link>
                 </Col>
                 <Col span={4}>
                     <Link to={"/menu1"}>
-                        <BigButton title={"About"} />
+                        <NavButton title={"About"} />
                     </Link>
                 </Col>
                 <Col span={4}>
                     <Link to={"/course"}>
-                        <BigButton title={"Course"} />
+                        <NavButton title={"Course"} />
                     </Link></Col>
                 <Col span={4}>
                     <Link to={"/menu3"}>
-                        <BigButton title={"User"} />
+                        <NavButton title={"User"} />
                     </Link></Col>
                 <Col span={4}>
                     <Link to={"/menu4"}>
-                        <BigButton title={"My Page"} />
+                        <NavButton title={"My Page"} />
                     </Link></Col>
             </Row>
         </div>

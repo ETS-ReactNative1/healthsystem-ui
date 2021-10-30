@@ -1,46 +1,48 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Course from "../common/Course";
-import {Col, Pagination, Row} from "antd";
+import ImagePanel from "../common/ImagePanel";
+import RemoteConPanel from "../common/RemoteConPanel";
 
 const CoursePage = () => {
-    // const [courseList, setCourseList] = useState({});
+    // const axios = require('axios');
     //
+    // const [courseList, setCourseList] = useState([]);
+
+    const styles = {
+        main: {
+            textAlign: "center",
+        },
+        courseList: {
+            display: "inline-block"
+        }
+    }
+
+    // const getCourseList = async () => {
+    //     try {
+    //         return await axios.get('http://localhost:8080/course/list');
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
     // useEffect(() => {
-    //     fetch("http://localhost:8080/course/list")
-    //         .then(resp => resp.json())
-    //         .then(data => setCourseList(data))
-    //         .catch(err => console.log(err));
+    //      setCourseList(getCourseList());
+    //     console.log(courseList);
     // }, []);
 
     return (
-        <div style={styles.main}>
-            <br/>
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Course name="06" title="헬린이 근지구력 성장 코스" />
-                </Col>
-                <Col span={12}>
-                    <Course name="07" title="파워 리프팅 상급자 코스"/>
-                </Col>
-            </Row><br/>
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Course name="08" title="쉽게 살 빼는 다이어트 요가"/>
-                </Col>
-                <Col span={12}>
-                    <Course name="09" title="넓은 가슴을 갖는 방법"/>
-                </Col>
-            </Row><br/><br/><br/><br/>
-
-            <Pagination defaultCurrent={1} total={50} />
+        <div className={"container"} style={styles.main}>
+            <ImagePanel/>
+            <RemoteConPanel/>
+            <div style={styles.courseList}>
+                <Course name="06" title="헬린이 근지구력 성장 코스"/>
+                <Course name="07" title="파워 리프팅 상급자 코스"/>
+                <Course name="08" title="쉽게 살 빼는 다이어트 요가"/>
+                <Course name="09" title="넓은 가슴을 갖는 방법"/>
+            </div>
+            {/*<Pagination defaultCurrent={1} total={50}/>*/}
         </div>
     );
 };
-
-const styles = {
-    main: {
-        textAlign: "center"
-    }
-}
 
 export default CoursePage;
