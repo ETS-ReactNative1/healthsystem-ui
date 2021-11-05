@@ -22,14 +22,20 @@ const LoginPage = () => {
         }
     }
 
+    // const loginFunc = () => {
+    //
+    // }
+
     return (
         <div style={styles.main}>
-            <Input size="large" placeholder="ID" prefix={<UserOutlined />} style={styles.line} />
-            <Input.Password size="large" placeholder="Password" prefix={<LockOutlined />} style={styles.line} />
-            <div style={styles.line} >
-                <CheckBox isChecked={rememberMe} checkFunc={setRememberMe}>Remember Me</CheckBox>
-            </div>
-            <Button type="primary" style={styles.line} >Log in</Button>
+            <form>
+                <Input size="large" placeholder="ID" prefix={<UserOutlined/>} style={styles.line}/>
+                <Input.Password size="large" placeholder="Password" prefix={<LockOutlined/>} style={styles.line}/>
+                <div style={styles.line}>
+                    <CheckBox isChecked={rememberMe} checkFunc={setRememberMe}>Remember Me</CheckBox>
+                </div>
+                <Button type="primary" style={styles.line}>Log in</Button>
+            </form>
         </div>
     );
 };

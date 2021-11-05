@@ -51,7 +51,7 @@ export function castVote(voteData) {
 
 export function login(loginRequest) {
     return request({
-        url: API_BASE_URL + "/auth/signin",
+        url: API_BASE_URL + "/user/login",
         method: 'POST',
         body: JSON.stringify(loginRequest)
     });

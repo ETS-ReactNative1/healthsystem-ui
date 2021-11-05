@@ -23,7 +23,7 @@ const CheckBox = (props) => {
             fontSize: checkSize,
             color: checkColor,
             lineHeight: "20px",
-            transition: "all 3s cubic-bezier(0.480, -0.600, 0.535, 1.650)",
+            transition: "all .3s cubic-bezier(0.480, -0.600, 0.535, 1.650)",
         }
     }
 
