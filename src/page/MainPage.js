@@ -44,8 +44,8 @@ const styles = {
         textAlign: "center",
         fontFamily: "GongGothicMedium",
         lineHeight: "15vw",
-        marginTop: "25vw",
-        marginBottom: "25vw"
+        marginTop: "20vh",
+        marginBottom: "20vh"
     }
 }
 

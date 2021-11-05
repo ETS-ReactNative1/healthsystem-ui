@@ -5,7 +5,7 @@ import {Route, Switch, withRouter} from 'react-router-dom';
 import {getCurrentUser} from '../util/APIUtils';
 import {ACCESS_TOKEN} from '../constants';
 import NewPoll from '../poll/NewPoll';
-import Login from '../user/login/Login';
+import LoginPage from '../page/LoginPage';
 import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
 import NotFound from '../common/NotFound';
@@ -121,7 +121,7 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/" render={() => <MainPage scrollY={this.state.scrollYRatio} />} />
                             <Route path="/login"
-                                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}/>
+                                   render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
                             <Route path="/signup" component={Signup} />
                             <Route path="/course" component={CoursePage} />
                             <Route path="/users/:username"

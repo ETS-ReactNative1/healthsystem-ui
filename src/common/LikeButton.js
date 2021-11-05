@@ -52,7 +52,7 @@ const LikeButton = () => {
             changeClickState(true);
         }
 
-        setHeartSize(".5vw");
+        setHeartSize("0vw");
     }
 
     return (

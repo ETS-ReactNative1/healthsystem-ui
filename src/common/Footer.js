@@ -11,9 +11,9 @@ const Footer = () => {
 const styles = {
     footer: {
         backgroundColor: "#4b6584",
-        height: "15vw",
+        height: "20vh",
         width: "100%",
-        marginTop: "20vw"
+        marginTop: "20vh"
     }
 }
 
